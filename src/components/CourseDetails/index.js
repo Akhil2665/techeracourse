@@ -35,15 +35,18 @@ class CourseDetails extends Component {
     const jsonData = await response.json()
     console.log(response)
     console.log(jsonData)
-    // const updatedData = jsonData.courses.map(eachData => ({
-    //   id: eachData.id,
-    //   logoUrl: eachData.logo_url,
-    //   name: eachData.name,
-    // }))
 
     if (response.ok) {
+      const updatedData = {
+        id: jsonData.course_details.id,
+        imageUrl: jsonData.course_details.image_url,
+        name: jsonData.course_details.name,
+        description: jsonData.course_details.description,
+      }
+
       this.setState({
         apiStatus: apiStatusConstants.success,
+        courseDetails: updatedData,
       })
     } else {
       this.setState({
