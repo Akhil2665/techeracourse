@@ -1,0 +1,8 @@
+.course-details-image {
+  height: 140px;
+  width: 140px;
+}
+.course-details-container {
+  display: flex;
+  flex-direction: row;
+}

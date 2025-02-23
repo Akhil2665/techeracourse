@@ -1,0 +1,15 @@
+.logo {
+  height: 60px;
+  width: 70px;
+}
+@media (min-width: 768px) {
+  .logo {
+    height: 100px;
+    width: 120px;
+  }
+}
+.header {
+  background-color: #f1f5f9;
+  height: 15%;
+  width: auto;
+}

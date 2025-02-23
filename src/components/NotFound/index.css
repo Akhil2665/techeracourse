@@ -1,0 +1,17 @@
+.not-found-image {
+  height: 300px;
+  width: 400px;
+}
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-heading {
+  font-size: 36px;
+  font-weight: 500;
+}
+.not-found-description {
+  font-size: 24px;
+}
