@@ -1,0 +1,26 @@
+.home-courses-container-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.course-details-failure-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.failure-view-image {
+  height: 300px;
+  width: 300px;
+}
+
+.retry-button {
+  background-color: #4656a1;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 20pxs;
+  padding: 10px 20px;
+  margin-bottom: 60px;
+}

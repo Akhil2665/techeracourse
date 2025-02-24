@@ -58,8 +58,8 @@ class Home extends Component {
   renderFailureView = () => (
     <div className="course-details-failure-view-container">
       <img
-        alt="error view"
-        src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-error-view-img.png"
+        alt="failure view"
+        src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
         className="failure-view-image"
       />
       <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
@@ -67,7 +67,7 @@ class Home extends Component {
         We cannot seem to find the page you are looking for.
       </p>
       <Link to="/">
-        <button type="button" className="retry-button">
+        <button type="button" className="retry-button" onClick={this.getData}>
           Retry
         </button>
       </Link>
@@ -77,11 +77,14 @@ class Home extends Component {
   renderSuccessView = () => {
     const {coursesList} = this.state
     return (
-      <ul className="home-courses-container-list">
-        {coursesList.map(eachObj => (
-          <CourseListItem courseDetails={eachObj} key={eachObj.id} />
-        ))}
-      </ul>
+      <>
+        <h1 className="main-heading">Courses</h1>
+        <ul className="home-courses-container-list">
+          {coursesList.map(eachObj => (
+            <CourseListItem courseDetails={eachObj} key={eachObj.id} />
+          ))}
+        </ul>
+      </>
     )
   }
 
@@ -104,7 +107,7 @@ class Home extends Component {
     return (
       <div className="home-container">
         <Header />
-        <h1 className="main-heading">Courses</h1>
+
         {this.renderResult(apiStatus)}
       </div>
     )

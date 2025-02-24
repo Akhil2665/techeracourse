@@ -1,12 +1,22 @@
 .logo {
   height: 60px;
   width: 70px;
+  margin: 20px;
 }
 @media (min-width: 768px) {
   .logo {
-    height: 100px;
-    width: 120px;
+    height: 80px;
+    width: 200px;
+    box-shadow: 1px 2px 3px 8px #64748b;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 40px;
   }
+}
+.logo:hover {
+  scale: 1.1;
+  transition: 0.8s;
+  transform-style: preserve-3d;
 }
 .header {
   background-color: #f1f5f9;

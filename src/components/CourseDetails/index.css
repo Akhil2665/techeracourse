@@ -1,8 +1,27 @@
 .course-details-image {
-  height: 140px;
-  width: 140px;
+  height: 300px;
+  width: 300px;
 }
 .course-details-container {
   display: flex;
   flex-direction: row;
+  margin: 40px;
+  box-shadow: 1px 2px 3px 4px #f1f5f9;
+  padding: 10px;
+}
+.course-details-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 40px;
+}
+.course-details-heading {
+  font-size: 36px;
+  font-weight: 600;
+  font-family: 'roboto';
+}
+.course-details-description {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: 'roboto';
 }

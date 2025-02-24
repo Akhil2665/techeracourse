@@ -15,7 +15,7 @@ const apiStatusConstants = {
 
 class CourseDetails extends Component {
   state = {
-    apiStaus: apiStatusConstants.initial,
+    apiStatus: apiStatusConstants.initial,
     courseDetails: {},
   }
 
@@ -25,25 +25,25 @@ class CourseDetails extends Component {
 
   getCourseDetails = async () => {
     this.setState({
-      apiStaus: apiStatusConstants.inProgress,
+      apiStatus: apiStatusConstants.inProgress,
     })
     const {match} = this.props
     const {params} = match
     const {id} = params
 
-    const response = await fetch(`https://apis.ccbp.in/te/courses/:${id}`)
+    const response = await fetch(`https://apis.ccbp.in/te/courses/${id}`)
+
     const jsonData = await response.json()
     console.log(response)
     console.log(jsonData)
+    const updatedData = {
+      id: jsonData.course_details.id,
+      imageUrl: jsonData.course_details.image_url,
+      name: jsonData.course_details.name,
+      description: jsonData.course_details.description,
+    }
 
     if (response.ok) {
-      const updatedData = {
-        id: jsonData.course_details.id,
-        imageUrl: jsonData.course_details.image_url,
-        name: jsonData.course_details.name,
-        description: jsonData.course_details.description,
-      }
-
       this.setState({
         apiStatus: apiStatusConstants.success,
         courseDetails: updatedData,
@@ -61,35 +61,40 @@ class CourseDetails extends Component {
     </div>
   )
 
-  renderFailureView = () => (
-    <div className="course-details-failure-view-container">
-      <img
-        alt="error view"
-        src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-error-view-img.png"
-        className="failure-view-image"
-      />
-      <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
-      <p className="failure-view-description">
-        We cannot seem to find the page you are looking for.
-      </p>
-      <Link to="/">
-        <button type="button" className="retry-button">
-          Retry
-        </button>
-      </Link>
-    </div>
-  )
+  renderFailureView = () => {
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+    return (
+      <div className="course-details-failure-view-container">
+        <img
+          alt="failure view"
+          src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
+          className="failure-view-image"
+        />
+        <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
+        <p className="failure-view-description">
+          We cannot seem to find the page you are looking for.
+        </p>
+        <Link to={`/courses/${id}`}>
+          <button type="button" className="retry-button">
+            Retry
+          </button>
+        </Link>
+      </div>
+    )
+  }
 
   renderSuccessView = () => {
     const {courseDetails} = this.state
+    const {name, description, imageUrl} = courseDetails
+
     return (
       <div className="course-details-container">
-        <img src="" alt="" className="course-details-image" />
-        <div className="course-details-container">
-          <h1 className="course-details-heading">CourseName</h1>
-          <p className="course-details-description">
-            course-details-description
-          </p>
+        <img src={imageUrl} alt={name} className="course-details-image" />
+        <div className="course-details-content">
+          <h1 className="course-details-heading">{name}</h1>
+          <p className="course-details-description">{description}</p>
         </div>
       </div>
     )
@@ -109,12 +114,12 @@ class CourseDetails extends Component {
   }
 
   render() {
-    const {apiStaus} = this.state
+    const {apiStatus} = this.state
 
     return (
       <>
         <Header />
-        {this.renderResult()}
+        {this.renderResult(apiStatus)}
       </>
     )
   }

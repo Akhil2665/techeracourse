@@ -1,0 +1,15 @@
+.course-list-item {
+  margin: 40px;
+}
+.course-list-item-image {
+  height: 80px;
+  width: 80px;
+}
+.course-name {
+  font-weight: 500;
+  font-size: 26px;
+}
+.link-item {
+  text-decoration: none;
+  color: black;
+}
