@@ -1,9 +1,8 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+
 import Loader from 'react-loader-spinner'
 
 import CourseListItem from '../CourseListItem'
-import Header from '../Header'
 
 import './index.css'
 
@@ -30,14 +29,14 @@ class Home extends Component {
     })
 
     const response = await fetch('https://apis.ccbp.in/te/courses')
-    const jsonData = await response.json()
-    const updatedData = jsonData.courses.map(eachData => ({
-      id: eachData.id,
-      logoUrl: eachData.logo_url,
-      name: eachData.name,
-    }))
-    console.log(jsonData)
+
     if (response.ok) {
+      const jsonData = await response.json()
+      const updatedData = jsonData.courses.map(eachData => ({
+        id: eachData.id,
+        logoUrl: eachData.logo_url,
+        name: eachData.name,
+      }))
       this.setState({
         apiStatus: apiStatusConstants.success,
         coursesList: updatedData,
@@ -58,19 +57,18 @@ class Home extends Component {
   renderFailureView = () => (
     <div className="course-details-failure-view-container">
       <img
-        alt="failure view"
         src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
+        alt="failure view"
         className="failure-view-image"
       />
       <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
       <p className="failure-view-description">
-        We cannot seem to find the page you are looking for.
+        We cannot seem to find the page you are looking for
       </p>
-      <Link to="/">
-        <button type="button" className="retry-button" onClick={this.getData}>
-          Retry
-        </button>
-      </Link>
+
+      <button type="button" className="retry-button" onClick={this.getData}>
+        Retry
+      </button>
     </div>
   )
 
@@ -79,11 +77,13 @@ class Home extends Component {
     return (
       <>
         <h1 className="main-heading">Courses</h1>
-        <ul className="home-courses-container-list">
-          {coursesList.map(eachObj => (
-            <CourseListItem courseDetails={eachObj} key={eachObj.id} />
-          ))}
-        </ul>
+        {coursesList.length > 0 && (
+          <ul className="home-courses-container-list">
+            {coursesList.map(eachObj => (
+              <CourseListItem courseDetails={eachObj} key={eachObj.id} />
+            ))}
+          </ul>
+        )}
       </>
     )
   }
@@ -105,11 +105,9 @@ class Home extends Component {
     const {apiStatus} = this.state
 
     return (
-      <div className="home-container">
-        <Header />
-
-        {this.renderResult(apiStatus)}
-      </div>
+      <>
+        <div className="home-container">{this.renderResult(apiStatus)}</div>
+      </>
     )
   }
 }

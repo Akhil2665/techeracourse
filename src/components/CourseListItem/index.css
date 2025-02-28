@@ -1,5 +1,8 @@
 .course-list-item {
-  margin: 40px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .course-list-item-image {
   height: 80px;

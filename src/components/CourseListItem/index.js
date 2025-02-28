@@ -11,7 +11,7 @@ const CourseListItem = props => {
       <Link to={`/courses/${id}`} className="link-item">
         <li className="course-list-item">
           <img src={logoUrl} className="course-list-item-image" alt={name} />
-          <p className="course-name">courseName</p>
+          <p className="course-name">{name}</p>
         </li>
       </Link>
     </>

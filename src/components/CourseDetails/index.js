@@ -1,8 +1,6 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
 
-import Header from '../Header'
+import Loader from 'react-loader-spinner'
 
 import './index.css'
 
@@ -61,29 +59,27 @@ class CourseDetails extends Component {
     </div>
   )
 
-  renderFailureView = () => {
-    const {match} = this.props
-    const {params} = match
-    const {id} = params
-    return (
-      <div className="course-details-failure-view-container">
-        <img
-          alt="failure view"
-          src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
-          className="failure-view-image"
-        />
-        <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
-        <p className="failure-view-description">
-          We cannot seem to find the page you are looking for.
-        </p>
-        <Link to={`/courses/${id}`}>
-          <button type="button" className="retry-button">
-            Retry
-          </button>
-        </Link>
-      </div>
-    )
-  }
+  renderFailureView = () => (
+    <div className="course-details-failure-view-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/tech-era/failure-img.png"
+        className="failure-view-image"
+        alt="failure view"
+      />
+      <h1 className="failure-view-heading">Oops! Something Went Wrong</h1>
+      <p className="failure-view-description">
+        We cannot seem to find the page you are looking for
+      </p>
+
+      <button
+        type="button"
+        className="retry-button"
+        onClick={this.getCourseDetails}
+      >
+        Retry
+      </button>
+    </div>
+  )
 
   renderSuccessView = () => {
     const {courseDetails} = this.state
@@ -117,10 +113,7 @@ class CourseDetails extends Component {
     const {apiStatus} = this.state
 
     return (
-      <>
-        <Header />
-        {this.renderResult(apiStatus)}
-      </>
+      <div className="course-details-page">{this.renderResult(apiStatus)}</div>
     )
   }
 }

@@ -2,6 +2,7 @@
   list-style-type: none;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .course-details-failure-view-container {
@@ -23,4 +24,8 @@
   font-size: 20pxs;
   padding: 10px 20px;
   margin-bottom: 60px;
+}
+.home-container {
+  font-family: 'roboto';
+  padding: 20px;
 }
